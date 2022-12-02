@@ -12,8 +12,8 @@ const contextCommandFiles = fs
   .filter((file) => file.endsWith(".js") && !file.startsWith("!"));
 
 // Place your client and guild ids here
-const clientId = "";
-const guildId = "";
+const clientId = "1034474161323643030";
+const guildId = "973840952412209182";
 
 for (const file of commandFiles) {
   const command = require(`./src/commands/${file}`);
