@@ -6,9 +6,6 @@ module.exports = {
   data: new SlashCommandBuilder()
     .setName("급식")
     .setDescription("급식을 확인합니다."),
-  // .addStringOption((option) =>
-  //   option.setName("날짜").setDescription("YYYYMMDD").setRequired(false)
-  // )
   /**
    * @param {Discord.CommandInteraction} interaction
    */

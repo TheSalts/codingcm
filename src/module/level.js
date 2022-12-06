@@ -1,11 +1,12 @@
-const fs = require("fs");
 const {
   Client,
-  Collection,
   GatewayIntentBits,
   Partials,
+  DiscordAPIError,
 } = require("discord.js");
 const { token } = require("../config.json");
+
+const Discord = require("discord.js");
 
 const client = new Client({
   intents: [
@@ -37,6 +38,18 @@ client.once("ready", () => {
 
 client.on("messageCreate", async (message) => {
   if (message.author.bot) return;
+
+  const logchannel = message.guild.channels.cache.get("1049711714389725305"); //log channel
+  let logEmbed = new Discord.EmbedBuilder()
+    .setAuthor({
+      name: message.author.tag,
+      iconURL: message.author.displayAvatarURL(),
+    })
+    .setTimestamp()
+    .setDescription(message.content)
+    .setColor("#2F3136");
+  logchannel.send({ embeds: [logEmbed] });
+
   const fs = require("fs");
   let read = fs.readFileSync(require.resolve("../data/level.json"), "utf8");
   let data = JSON.parse(read);
