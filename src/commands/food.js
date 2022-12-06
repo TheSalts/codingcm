@@ -5,12 +5,10 @@ const Discord = require("discord.js");
 module.exports = {
   data: new SlashCommandBuilder()
     .setName("급식")
-    .setDescription("급식을 확인합니다.").addStringOption((option) =>
-    option
-      .setName("날짜")
-      .setDescription("YYYYMMDD")
-      .setRequired(false)
-  ),
+    .setDescription("급식을 확인합니다."),
+  // .addStringOption((option) =>
+  //   option.setName("날짜").setDescription("YYYYMMDD").setRequired(false)
+  // )
   /**
    * @param {Discord.CommandInteraction} interaction
    */
@@ -29,7 +27,11 @@ module.exports = {
     );
     let food = api.data.mealServiceDietInfo[1].row[0].DDISH_NM;
     let kcal = api.data.mealServiceDietInfo[1].row[0].CAL_INFO;
-    let embed = new Discord.EmbedBuilder().setDescription(food.replaceAll("<br/>", "\n")).setColor("#2F3136").setFooter({ text: kcal + " · " + `${year}.${month}.${day}` })
-    await interaction.reply({embeds:[embed]});
+
+    let embed = new Discord.EmbedBuilder()
+      .setDescription(food.replaceAll("<br/>", "\n"))
+      .setColor("#2F3136")
+      .setFooter({ text: kcal + " · " + `${year}.${month}.${day}` });
+    await interaction.reply({ embeds: [embed] });
   },
 };
